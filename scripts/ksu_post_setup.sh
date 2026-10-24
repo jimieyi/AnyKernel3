@@ -1,7 +1,7 @@
 #!/bin/bash
 # KernelSU 编译后置处理：版本标识兼容性校准
 # 用途：统一不同 KSU 变体的版本名格式，避免构建产物版本标识不一致
-# 【已修改：移除自动追加 @LingLuo 的替换逻辑】
+# 【已修改：移除自动追加 @LingLuo，新增清除 @HEAD 分支拼接】
 
 set -e
 
@@ -47,6 +47,8 @@ apply_finasu() {
     local pat=$(echo "${PATTERNS[finasu_branch]}" | base64 -d)
     # 注释：不再替换 @${BRAND}
     # sed -i "s/${pat}/@${BRAND}/" "$kbuild"
+    # 删除分支拼接，去除 @HEAD / @分支名
+    sed -i 's/@$(shell git rev-parse --abbrev-ref HEAD)//g' "$kbuild"
     git -C "$KSU_DIR" update-index --skip-worktree kernel/Kbuild
   fi
 }
