@@ -29,7 +29,7 @@ on:
         required: false
         type: string
       build_time:
-        description: "自定义构建时间 (留空=自动获取当前北京时间) (示例 Sun Dec  1 08:10:00 UTC 2026)"
+        description: "自定义构建时间 (留空=自动获取当前北京时间) (示例 Tue Dec  1 08:10:00 UTC 2026)"
         required: false
         type: string
         default: ""
@@ -76,7 +76,7 @@ on:
         type: boolean
         default: false
       use_net_enhance:
-        description: "启用 网络增强 (IPSet + BBR)"
+        description: "启用 网络增强 (BBRv3 + IPSet + Qdisc + CIFS)"
         required: true
         type: boolean
         default: false
@@ -190,6 +190,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - sub_level: "41"
+            os_patch_level: "2022-11"
           - sub_level: "74"
             os_patch_level: "2023-01"
           - sub_level: "78"
@@ -230,7 +232,7 @@ jobs:
             os_patch_level: "2025-12"
           - sub_level: "X"
             os_patch_level: "lts"
-            display_sub: "220"
+            display_sub: "223"
     uses: ./.github/workflows/build.yml
     secrets: inherit
     with:

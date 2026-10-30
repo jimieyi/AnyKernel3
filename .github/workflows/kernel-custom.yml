@@ -106,7 +106,7 @@ on:
           - "185 (2025-07)"
           - "189 (2025-09)"
           - "194 (2025-12)"
-          - "lts (5.15.220)"
+          - "lts (5.15.223)"
       sub_level_6_1:
         description: "6.1 子版本 (选择后自动匹配安全补丁级别；仅内核版本为 6.1 时生效)"
         required: false
@@ -146,7 +146,7 @@ on:
           - "162 (2026-03)"
           - "172 (2026-06)"
           - "176 (2026-09)"
-          - "lts (6.1.177)"
+          - "lts (6.1.182)"
       sub_level_6_6:
         description: "6.6 子版本 (选择后自动匹配安全补丁级别；仅内核版本为 6.6 时生效)"
         required: false
@@ -215,7 +215,7 @@ on:
         required: false
         type: string
       build_time:
-        description: "自定义构建时间 (留空=自动获取当前北京时间) (示例 Sun Dec  1 08:10:00 UTC 2026)"
+        description: "自定义构建时间 (留空=自动获取当前北京时间) (示例 Tue Dec  1 08:10:00 UTC 2026)"
         required: false
         type: string
         default: ""
@@ -266,7 +266,7 @@ on:
         type: boolean
         default: false
       use_net_enhance:
-        description: "启用 网络增强 (IPSet + BBR)"
+        description: "启用 网络增强 (BBRv3 + IPSet + Qdisc + CIFS)"
         required: true
         type: boolean
         default: false
